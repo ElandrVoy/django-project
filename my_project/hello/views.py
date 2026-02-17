@@ -1,12 +1,11 @@
-from django.http import HttpResponse
+from django.shortcuts import render
  
 def index(request):
-    host = request.META["HTTP_HOST"] # получаем адрес сервера
-    user_agent = request.META["HTTP_USER_AGENT"]    # получаем данные бразера
-    path = request.path     # получаем запрошенный путь
-     
-    return HttpResponse(f"""
-        <p>Host: {host}</p>
-        <p>Path: {path}</p>
-        <p>User-agent: {user_agent}</p>
-    """)
+    data = {"header": "Hello, Django!", "message": "Welcome to my first Django project"}
+    return render(request, "index.html", context=data)
+
+def about(request):
+    return render(request, "about.html")
+
+def contact(request):
+    return render(request, "contact.html")
