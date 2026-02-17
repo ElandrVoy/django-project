@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Django на METANIT.COM</title>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Index{% endblock title %}
+{% block header %}
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
     <meta charset="utf-8" />
-</head>
-<body>
-    <h2>{{ header }}</h2>
+{% endblock header %}
+{% block content %}
+    <h1>{{ header }}</h2>
     <p>{{ message }}</p>
-</body>
-</html>
+    <img src="{% static "images/shocked_emoji.jpg" %}" alt="зимний лес" >
+{% endblock content %}
