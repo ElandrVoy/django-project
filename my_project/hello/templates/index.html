@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Index{% endblock title %}
+{% block title %}Главная{%endblock title %}
 {% block header %}
     <link rel="stylesheet" href="{% static "css/styles.css" %}" />
     <meta charset="utf-8" />
 {% endblock header %}
 {% block content %}
-    <h1>{{ header }}</h2>
-    <p>{{ message }}</p>
-    <img src="{% static "images/shocked_emoji.jpg" %}" alt="зимний лес" >
-{% endblock content %}
+    <h1>{{ header }}</h1>
+    <p style="color: rgb(241, 241, 241);">{{ message }}</p>
+    <img src="{% static "images/shocked_emoji.png" %}" alt="зимний лес" >
+{% endblock content %} 

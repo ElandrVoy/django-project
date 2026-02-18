@@ -22,4 +22,6 @@ urlpatterns = [
     path("", views.index),
     path("about/", views.about),
     path("contact/", views.contact),
+    path("post/", views.post),
+    path("post/postuser/", views.postuser),
 ]

@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .forms import UserForm
  
 def index(request):
-    data = {"header": "Hello, Django!", "message": "Welcome to my first Django project"}
+    data = {"header": "Главная страница", "message": "Welcome to my first Django project"}
     return render(request, "index.html", context=data)
 
 def about(request):
@@ -9,3 +11,12 @@ def about(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+def post(request):
+    userform = UserForm()
+    return render(request, "post.html", {"form": userform})
+
+def postuser(request):
+    name = request.POST.get("name")
+    age = request.POST.get("age")
+    return HttpResponse(f"<h2>Привет, {name}, твой возраст: {age}</h2>")
