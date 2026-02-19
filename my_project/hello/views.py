@@ -9,8 +9,11 @@ def index(request):
 def about(request):
     return render(request, "about.html")
 
-def contact(request):
-    return render(request, "contact.html")
+def contacts(request):
+    return render(request, "contacts.html")
+
+def projects(request):
+    return render(request, "projects.html")
 
 def post(request):
     userform = UserForm()

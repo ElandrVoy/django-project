@@ -1,27 +1,72 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <meta charset="utf-8" />
     <title>{% block title %}Default title{% endblock title %}</title>
     <style>
-    .top-rect {
+    .rect-top {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 35px;          /* высота прямоугольника */
-      background: #464646;   /* серый цвет */
-      z-index: 1000;
+      height: 30px;    
+      background: #444444;  
+      z-index: 100;
+    }
+      .rect-top div{
+      font-size: 20px; 
+       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       color: #bfc7be;
+    }
+
+    .block-links{
+      align-self: center;
+      height: 30px;
+      margin-top: 2px;
+      
+    }
+    .block-links a{
+      font-size: 20px; 
+       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       color: #bfc7be;
+       text-decoration: none;
+       margin-top: 5px;
+       margin-left: 4px;
+       margin-right: 4px;
+       padding: 7px 3px 3px 3px;
+       z-index: 101;
+    }
+    .block-links a:hover{
+      background-color: rgba(0,0,0,0.1);
+      padding: 3px 3px 3px 3px;
+      border-radius: 4px;
+    }
+
+    .rect-main{
+      width: 70%;
+      height: 100vw;
+      margin:0;
+      padding: 10px;
+      margin: auto;
+      z-index: 1;
+      background:#333333;
     }
 
   </style>
 </head>
-<body style="background-color: rgb(41, 41, 41);">
-    <div class="top-rect">
-        <a href="/">Главная</a> | <a href="/contact">Контакты</a> | <a href="/post">Тест post</a>
-    </div>
-    <h1>{% block header %}{% endblock header %}</h1>
-    <div>{% block content%}{% endblock content %}</div>
-    <div>MyCorp. 2022. All rights reserved.</div>
+<body style="background-color: #111111">
+    <div class="rect-top">
+      <div class = "block-links" align="center">
+       <a href="/">Главная</a>|
+       <a href="/contacts">Контакты</a>|
+       <a href="/post">Тест post</a>|
+       <a href="/projects">Мои проекты</a>
+      </div>
+    <div class="rect-main" align="center">
+      <h1>{% block header %}{% endblock header %}</h1>
+      <div>{% block content%}{% endblock content %}</div>
+      <div>MyCorp. 2022. All rights reserved.</div>
+    </div>    
 </body>
 </html>

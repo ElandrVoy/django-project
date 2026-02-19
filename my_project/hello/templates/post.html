@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.html" %}
+{% block title %}Главная{%endblock title %}
+{% block header %}
     <meta charset="utf-8" />
-    <title>METANIT.COM</title>
-</head>
-<body>
-    <h2>User form</h2>
-    <form method="post" action="post/postuser/">
+{% endblock header %}
+{% block content %}
+    <h1>{{ header }}</h1>
+        <form method="post" action="postuser/">
         {% csrf_token %}
         <table>
             {{form}} 
         </table>
         <input type="submit" value="Send" />
     </form>
-</body>
-</html>
+{% endblock content %} 
+
