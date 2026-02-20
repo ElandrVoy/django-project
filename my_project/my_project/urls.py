@@ -20,9 +20,10 @@ from hello import views
  
 urlpatterns = [
     path("", views.index),
-    path("about/", views.about),
     path("contacts/", views.contacts),
     path("post/", views.post),
+    path("post/create/", views.create),
+    path("post/edit/<int:id>/", views.edit),
+    path("post/delete/<int:id>/", views.delete),
     path("projects/", views.projects),
-    path("post/postuser/", views.postuser),
 ]
