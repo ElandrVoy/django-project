@@ -1,7 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}База данных{%endblock title %}
 {% block header %}
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static "css/table.css" %}" />
+    <style>
+        .table-back {
+            border: 1px solid #666666;
+            width: 100%;
+            padding: 0;
+        }
+    </style>
 {% endblock header %}
 {% block content %}
      <form method="POST" action="create/">
@@ -18,18 +27,24 @@
     </form>
     {% if people.count > 0 %}
     <h2>Список пользователей</h2>
-    <table>
-        <thead><th>Id</th><th>Имя</th><th>Фамилия</th><th>Возраст</th><th></th></thead>
-        {% for person in people %}
-        <tr>
-            <td>{{ person.id }}</td>
-            <td>{{ person.name }}</td>
-            <td>{{ person.surname }}</td>
-            <td>{{ person.age }}</td>
-            <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th></th>
+            </thead>
+            {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.surname }}</td>
+                <td>{{ person.age }}</td>
+                <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
 {% endblock content %} 
 

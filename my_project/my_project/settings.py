@@ -65,7 +65,7 @@ TEMPLATES = [
             ],
         },
     },
-]
+]   
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
 
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres-test',
+        'USER': 'postgres',
+        'PASSWORD': '2299722',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
