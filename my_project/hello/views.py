@@ -17,9 +17,9 @@ def projects(request):
     return render(request, "projects.html")
 
 #DB interaction
-def post(request):
+def database(request):
     people = Person.objects.all()
-    return render(request, "post.html", {"people": people})
+    return render(request, "database.html", {"people": people})
 
     # сохранение данных в бд
 def create(request):
@@ -28,7 +28,7 @@ def create(request):
         person.name = request.POST.get("name")
         person.age = request.POST.get("age")
         person.save()
-    return HttpResponseRedirect("/post")
+    return HttpResponseRedirect("/database")
 
     # изменение данных в бд
 def edit(request, id):
@@ -39,7 +39,7 @@ def edit(request, id):
             person.name = request.POST.get("name")
             person.age = request.POST.get("age")
             person.save()
-            return HttpResponseRedirect("/post")
+            return HttpResponseRedirect("/database")
         else:
             return render(request, "edit.html", {"person": person})
     except Person.DoesNotExist:
@@ -50,6 +50,6 @@ def delete(request, id):
     try:
         person = Person.objects.get(id=id)
         person.delete()
-        return HttpResponseRedirect("/post")
+        return HttpResponseRedirect("/database")
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
