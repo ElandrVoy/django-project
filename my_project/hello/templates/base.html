@@ -14,26 +14,38 @@
           inset: 0;
         }
 
-        .rect-top {
+        .rect-top-bg{
           position: fixed;
+          display: flex;
+          justify-content: center;
           top: 0;
           left: 0;
           width: 100%;
           height: 30px;    
-          background: #444444;  
           z-index: 100;
         }
-        .rect-top div{
+        .rect-top {
+          top: 0;
+          left: 0;
+          width: 72%;
+          height: 35px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          background: #555555;  
+          z-index: 101;
+        }
+
+        .rect-top-bg div{
           font-size: 20px; 
           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
           color: #bfc7be;
         }
 
         .block-links{
-          align-self: center;
           height: 30px;
-          margin-top: 2px;
-          
+          margin-top: 5px;
+          margin-left: 30px;
+          left: 20px;
         }
         .block-links a{
           font-size: 20px; 
@@ -43,25 +55,28 @@
           margin-top: 5px;
           margin-left: 4px;
           margin-right: 4px;
-          padding: 7px 3px 3px 3px;
+          padding: 7px 5px 3px 5px;
           z-index: 101;
         }
         .block-links a:hover{
-          background-color: rgba(0,0,0,0.1);
-          padding: 3px 3px 3px 3px;
-          border-radius: 4px;
+          background-color: #444444;
+          padding: 3px 5px 3px 5px;
+          border-radius: 5px;
         }
 
         .rect-main{
           width: 70%;
           height: 100vw;
-          opacity: 0.9;
-          margin:0;
-          padding: 10px;
+          opacity: 0.85;
           margin: auto;
           z-index: 1;
-          border-radius: 5px;
           background:#333333;
+          padding-top: 30px;
+        }
+        .rect-main div{
+          font-size: 20px; 
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          color: #bfc7be;
         }
 
         .content{
@@ -72,25 +87,39 @@
           border: 1px #cccccc;
         }
 
+        .button{
+          right: 20px;
+          margin-top: 5px;
+          margin-left: 30px;
+          position: absolute;
+        }
+
     </style>
 </head>
 <body style="background-color: #111111">
   <img id="background-image" src="{% static "images/background-image2.png" %}" alt="">
-  <div>
+  <div class="rect-top-bg">
     <div class="rect-top">
-      <div class = "block-links" align="center">
-       <a href="/">Главная</a>|
-       <a href="/contacts">Контакты</a>|
-       <a href="/database">Тест БД</a>|
-       <a href="/projects">Мои проекты</a>
+      <div class="block-links">
+        <a href="/">Главная</a>|
+        <a href="/contacts">Контакты</a>|
+        <a href="/database">Тест БД</a>|
+        <a href="/projects">Мои проекты</a>
+        {% if request.user.is_authenticated %}
+        <div class="button">
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button cals="button" type="submit">Logout</button>
+          </form>
+        </div>   
+        {% endif %}
       </div>
-    <div class="rect-main" align="center">
-      <div class="content">
-        <h1>{% block header %}{% endblock header %}</h1>
-        <div>{% block content%}{% endblock content %}</div>
-      </div>
-    </div>    
+    </div>
   </div>
-    
+  <div class="rect-main" align="center">
+    <div class="content">
+      {% block header %}{% endblock header %}
+      {% block content %}{% endblock content %}</div>
+  </div>
 </body>
 </html>

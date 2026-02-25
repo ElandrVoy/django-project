@@ -5,7 +5,13 @@ from .models import Person
 
 #Main page 
 def index(request):
-    data = {"header": "Главная страница", "message": "Welcome to my first Django project"}
+
+    num_visits=request.session.get('num_visits', 0)
+
+    data = {'num_visits':num_visits}    
+
+    request.session['num_visits'] = num_visits+1
+
     return render(request, "index.html", context=data)
 
 #Contacts page
@@ -18,8 +24,12 @@ def projects(request):
 
 #DB interaction
 def database(request):
-    people = Person.objects.all()
-    return render(request, "database.html", {"people": people})
+    if request.user.is_authenticated == True:
+        people = Person.objects.all()
+        return render(request, "database.html", {"people": people})
+    else:
+        return HttpResponseRedirect("/accounts/login")
+    
 
     # сохранение данных в бд
 def create(request):
