@@ -9,6 +9,10 @@ th, td {
     padding: 2px 15px 2px 15px;
     border-bottom: 1px solid #666666;
 }
+h2{
+    margin-bottom: 5px;
+}
+
 /* tr:nth-child(even) {
     background-color: #666666;
     border: 1px solid #666666;;

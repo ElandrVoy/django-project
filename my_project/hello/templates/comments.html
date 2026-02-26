@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}комментарии{%endblock title %}
+{% block header %}
+    <meta charset="utf-8" />
+{% endblock header %}
+{% block content %}
+    <h2>Добавить запись</h2>
+     <form method="POST" action="create-comment/">
+        {% csrf_token %}
+        <p>
+            <label>Напишите комментарий</label><br>
+            <input type="text" name="text" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+     {% if comments.count > 0 %}
+    <h2>Комментарии</h2>
+        <table>
+            <thead>
+                <th>user</th>
+                <th>comment</th>
+            </thead>
+            {% for post in comments %}
+            <tr>
+                <td>{{ post.username }}</td>
+                <td>{{ post.text }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+{% endblock content %} 

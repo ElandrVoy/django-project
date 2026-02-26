@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-
-from .models import Person
+import datetime
+from .models import Person, Comments
 
 #Main page 
 def index(request):
@@ -17,6 +17,20 @@ def index(request):
 #Contacts page
 def contacts(request):
     return render(request, "contacts.html")
+
+#Comments
+def comments(request):
+    data = Comments.objects.all()
+    return render(request, "comments.html", {"comments": data})
+
+def create_comment(request):
+    if request.method == "POST":
+        comment = Comments()
+        comment.text = request.POST.get("text")
+        comment.date = datetime.date.today()
+        comment.time = datetime.time()
+        comment.save()
+    return HttpResponseRedirect("/comments")
 
 #My project
 def projects(request):

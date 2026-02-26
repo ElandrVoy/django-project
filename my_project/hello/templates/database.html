@@ -3,7 +3,7 @@
 {% block title %}База данных{%endblock title %}
 {% block header %}
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="{% static "css/table.css" %}" />
+    <link rel="stylesheet" href="{% static "css/database.css" %}" />
     <style>
         .table-back {
             border: 1px solid #666666;
@@ -13,6 +13,7 @@
     </style>
 {% endblock header %}
 {% block content %}
+    <h2>Добавить запись</h2>
      <form method="POST" action="create/">
         {% csrf_token %}
         <p>

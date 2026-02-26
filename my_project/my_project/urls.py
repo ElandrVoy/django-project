@@ -27,6 +27,8 @@ urlpatterns = [
     path("database/edit/<int:id>/", views.edit),
     path("database/delete/<int:id>/", views.delete),
     path("projects/", views.projects),
+    path("comments/", views.comments),
+    path("comments/create-comment/", views.create_comment),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
