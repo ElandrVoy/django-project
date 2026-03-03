@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-import datetime
 from .models import Person, Comments, User
 
 #Main page 
@@ -21,17 +20,16 @@ def contacts(request):
 #Comments
 def comments(request):
     data = Comments.objects.all()
-    print(data.query)
-    return render(request, "comments.html", {"comments": data})
+    data_users = User.objects.all()
+    return render(request, "comments.html", {"comments": data, "users" : data_users})
 
 
 def create_comment(request):
     if request.method == "POST":
         comment = Comments()
-        comment.user = User.objects.get(username = request.user.username)
+        comment.user = request.user
+        comment.username = User.objects.get(id = comment.user.id)
         comment.text = request.POST.get("text")
-        comment.date = datetime.date.today()
-        comment.time = datetime.time()
         comment.save()
     return HttpResponseRedirect("/comments")
 

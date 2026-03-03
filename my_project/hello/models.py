@@ -17,6 +17,7 @@ class Users(models.Model):
 
 class Comments(models.Model):
     text = models.CharField(max_length=150)
-    date = models.DateField(null=True)
-    time = models.TimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", primary_key=False)
+    date = models.DateField(null=True, auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=50, default="Jo Bidon")
