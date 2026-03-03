@@ -19,4 +19,4 @@ class Comments(models.Model):
     text = models.CharField(max_length=150)
     date = models.DateField(null=True)
     time = models.TimeField()
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", primary_key=False)

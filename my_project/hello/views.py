@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 import datetime
-from .models import Person, Comments
+from .models import Person, Comments, User
 
 #Main page 
 def index(request):
@@ -21,11 +21,14 @@ def contacts(request):
 #Comments
 def comments(request):
     data = Comments.objects.all()
+    print(data.query)
     return render(request, "comments.html", {"comments": data})
+
 
 def create_comment(request):
     if request.method == "POST":
         comment = Comments()
+        comment.user = User.objects.get(username = request.user.username)
         comment.text = request.POST.get("text")
         comment.date = datetime.date.today()
         comment.time = datetime.time()
